@@ -6,7 +6,7 @@ Group Members:
 4.GATETE Jean d’Amour                         223021077
 5.TUMUKUNDE Yvonne                            222005483
 6.MUNYEMANA Jean Paul                         222007122
-
+7.UMUHOZA UWASE Rosine                        222016920
 JAVA ASSIGNMENT
 Q1. Rectangle Area Calculator
 package trig;
