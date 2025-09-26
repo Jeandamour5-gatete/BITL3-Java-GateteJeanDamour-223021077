@@ -1,0 +1,157 @@
+package SelectShape;
+
+import java.util.Scanner;
+
+abstract class Shape {
+    abstract double calculateArea();
+    abstract double calculatePerimeter();
+}
+
+class Rectangle extends Shape {
+    double length, width;
+
+    Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    double calculateArea() {
+        return length * width;
+    }
+
+    double calculatePerimeter() {
+        return 2 * (length + width);
+    }
+}
+
+class Circle extends Shape {
+    double radius;
+
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+
+    double calculatePerimeter() {
+        return 2 * Math.PI * radius;
+    }
+}
+
+class Square extends Shape {
+    double side;
+
+    Square(double side) {
+        this.side = side;
+    }
+
+    double calculateArea() {
+        return side * side;
+    }
+
+    double calculatePerimeter() {
+        return 4 * side;
+    }
+}
+
+class Triangle extends Shape {
+    double base, height, hypotenuse;
+
+    Triangle(double base, double height) {
+        this.base = base;
+        this.height = height;
+        this.hypotenuse = Math.sqrt(base * base + height * height);
+    }
+
+    double calculateArea() {
+        return 0.5 * base * height;
+    }
+
+    double calculatePerimeter() {
+        return base + height + hypotenuse;
+    }
+}
+
+public class ShapeMenu {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        boolean kR = true;
+
+        while (kR) {
+            System.out.println("\n......Select Shape......");
+            System.out.println("1. Rectangle");
+            System.out.println("2. Circle");
+            System.out.println("3. Square");
+            System.out.println("4. Triangle");
+            System.out.print("Enter your choice from 1 to 4: ");
+            int choice = sc.nextInt();
+
+            Shape shape = null;
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\nEnter details of Rectangle:");
+                    System.out.print("Enter length: ");
+                    double length = sc.nextDouble();
+                    System.out.print("Enter width: ");
+                    double width = sc.nextDouble();
+                    shape = new Rectangle(length, width);
+                    break;
+
+                case 2:
+                    System.out.println("\nEnter details of Circle:");
+                    System.out.print("Enter radius: ");
+                    double r = sc.nextDouble();
+                    shape = new Circle(r);
+                    break;
+
+                case 3:
+                    System.out.println("\nEnter details of Square:");
+                    System.out.print("Enter side: ");
+                    double s = sc.nextDouble();
+                    shape = new Square(s);
+                    break;
+
+                case 4:
+                    System.out.println("\nEnter details of Triangle:");
+                    System.out.print("Enter base: ");
+                    double base = sc.nextDouble();
+                    System.out.print("Enter height: ");
+                    double height = sc.nextDouble();
+                    shape = new Triangle(base, height);
+                    break;
+
+                default:
+                    System.out.println("Invalid choice, please try again.");
+                    continue; 
+            }
+
+            System.out.println("\nWhat would you like to calculate?");
+            System.out.println("A. Area");
+            System.out.println("B. Perimeter");
+            System.out.print("Enter your choice: ");
+            char calcChoice = sc.next().toUpperCase().charAt(0);
+
+            if (calcChoice == 'A') {
+                System.out.println("Area = " + shape.calculateArea());
+            } else if (calcChoice == 'B') {
+                System.out.println("Perimeter = " + shape.calculatePerimeter());
+            } else {
+                System.out.println("Invalid option.");
+            }
+
+            System.out.print("\nWould you like to continue? (yes/no): ");
+            String cont = sc.next();
+
+            if (cont.equalsIgnoreCase("no")) {
+                kR = false;
+                System.out.println("\nThank you for using system!");
+            }
+        }
+
+        sc.close();
+    }
+}
